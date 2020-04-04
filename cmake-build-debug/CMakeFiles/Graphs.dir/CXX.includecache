@@ -6,7 +6,23 @@
 
 #IncludeRegexTransform: 
 
+C:/Graphs/Graph.h
+vector
+-
+fstream
+-
+iostream
+-
+string
+-
+
 C:/Graphs/main.cpp
 iostream
 -
+vector
+-
+fstream
+-
+Graph.h
+C:/Graphs/Graph.h
 
