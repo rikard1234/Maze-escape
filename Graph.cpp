@@ -17,11 +17,10 @@ Graph::Graph(int V, int E) : V(V), E(E) {
 
 void Graph::ReadFromFile() {
         ifstream file;
-        int integer = 3;
         file.open("dane.txt");
 
         for (int i = 0 ; i < 1 ; i++){
-            file.ignore(integer, '\n');
+            file.ignore(100, '\n');
         }
 
         while(true){
