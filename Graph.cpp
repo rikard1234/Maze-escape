@@ -3,43 +3,37 @@
 //A{!tt
 #include "Graph.h"
 
-Graph::Graph(int V, int E) : V(V), E(E) {
-        this->adjacencyList = new vector<int>[V];
-        this->wageMatrix = new int*[V];
+Graph::Graph(string path) {
+        ifstream file;
+        file.open(path);
+        file >> this->V >> this->E;
 
-        for(int i = 0; i < V; ++i) wageMatrix[i] = new int[V];
+        this->adjacencyList = new vector<int>[V];
+        this->pensjaMatrix = new int*[V];
+
+        for(int i = 0; i < V; ++i) pensjaMatrix[i] = new int[V];
         for(int i = 0; i < V; ++i)  {
             for(int j = 0; j < V; ++j) {
-                wageMatrix[i][j] = 0;
+                pensjaMatrix[i][j] = 0;
            }
         }
-}
-
-void Graph::ReadFromFile() {
-        ifstream file;
-        file.open("dane.txt");
-
-        for (int i = 0 ; i < 1 ; i++){
-            file.ignore(100, '\n');
-        }
-
-        while(true){
+        while(true) {
             int v, u, wage;
             file >> v >> u >> wage;
             if( file.eof() ) break;
-            this->wageMatrix[v][u] = wage;
+            this->pensjaMatrix[v][u] = wage;
             if(u != v) {
                 this->adjacencyList[u].push_back(v);
                 this->adjacencyList[v].push_back(u);
             }
             else {
-               this->adjacencyList[u].push_back(v);
+                this->adjacencyList[u].push_back(v);
             }
         }
     file.close();
 }
 
-void Graph::Print() {
+void Graph::print() {
     for (int v = 0; v < V; v++) {
         cout << "Vertex :" << v << " -> ";
         for (int i = 0; i < adjacencyList[v].size(); i++) {
@@ -50,10 +44,10 @@ void Graph::Print() {
     }
 }
 
-void Graph::PrintWages() {
+void Graph::printPensja() {
     for(int i = 0; i < V; i++) {
         for(int j = 0; j < V; j++) {
-            cout << this->wageMatrix[i][j] << " ";
+            cout << this->pensjaMatrix[i][j] << " ";
         }
         cout << endl;
     }

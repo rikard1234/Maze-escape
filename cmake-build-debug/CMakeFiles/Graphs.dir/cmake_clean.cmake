@@ -4,7 +4,7 @@ file(REMOVE_RECURSE
   "Graphs.pdb"
   "Graphs.exe"
   "Graphs.exe.manifest"
-  "Graphs.lib"
+  "libGraphs.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

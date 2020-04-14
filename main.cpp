@@ -7,13 +7,9 @@ using namespace std;
 
 int main() {
     int V, E;
-    ifstream file;
-    file.open("dane.txt");
-    file >> V >> E;
-    file.close();
-    Graph graph(V, E);
-    graph.ReadFromFile();
-    graph.Print();
-    graph.PrintWages();
+
+    Graph graph("dane.txt");
+    graph.print();
+    graph.printPensja();
     return 0;
 }

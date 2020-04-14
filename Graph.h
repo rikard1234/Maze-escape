@@ -11,15 +11,15 @@
 using namespace std;
 class Graph {
 public:
-    const int V, E;
-    void ReadFromFile();
-    void Print();
-    void PrintWages();
-    Graph(int V, int E);
+    int V, E;
+    void readFromFile();
+    void print();
+    void printPensja();
+    Graph(string);
 
 private:
     vector<int>* adjacencyList;
-    int** wageMatrix;
+    int** pensjaMatrix;
 };
 
 
