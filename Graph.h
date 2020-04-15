@@ -14,12 +14,11 @@ public:
     int V, E;
     void readFromFile();
     void print();
-    void printPensja();
     Graph(string);
 
 private:
     vector<int>* adjacencyList;
-    int** pensjaMatrix;
+    int** weightMatrix;
 };
 
 

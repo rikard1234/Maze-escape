@@ -9,25 +9,23 @@ Graph::Graph(string path) {
         file >> this->V >> this->E;
 
         this->adjacencyList = new vector<int>[V];
-        this->pensjaMatrix = new int*[V];
+        this->weightMatrix = new int*[V];
 
-        for(int i = 0; i < V; ++i) pensjaMatrix[i] = new int[V];
+        for(int i = 0; i < V; ++i) weightMatrix[i] = new int[V];
         for(int i = 0; i < V; ++i)  {
             for(int j = 0; j < V; ++j) {
-                pensjaMatrix[i][j] = 0;
+                weightMatrix[i][j] = 0;
            }
         }
         while(true) {
             int v, u, wage;
             file >> v >> u >> wage;
             if( file.eof() ) break;
-            this->pensjaMatrix[v][u] = wage;
+            this->weightMatrix[v][u] = wage;
+            this->weightMatrix[u][v] = wage;
+            this->adjacencyList[u].push_back(v);
             if(u != v) {
-                this->adjacencyList[u].push_back(v);
-                this->adjacencyList[v].push_back(u);
-            }
-            else {
-                this->adjacencyList[u].push_back(v);
+               this->adjacencyList[v].push_back(u);
             }
         }
     file.close();
@@ -42,13 +40,11 @@ void Graph::print() {
         }
         cout << endl;
     }
-}
-
-void Graph::printPensja() {
-    for(int i = 0; i < V; i++) {
+      for(int i = 0; i < V; i++) {
         for(int j = 0; j < V; j++) {
-            cout << this->pensjaMatrix[i][j] << " ";
+            cout << this->weightMatrix[i][j] << " ";
         }
         cout << endl;
     }
 }
+

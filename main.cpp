@@ -10,6 +10,5 @@ int main() {
 
     Graph graph("dane.txt");
     graph.print();
-    graph.printPensja();
     return 0;
 }
