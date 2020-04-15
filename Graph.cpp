@@ -18,15 +18,15 @@ Graph::Graph(string path) {
            }
         }
         while(true) {
-            int v, u, wage;
-            file >> v >> u >> wage;
-            if( file.eof() ) break;
-            this->weightMatrix[v][u] = wage;
-            this->weightMatrix[u][v] = wage;
+            int v, u, weight;
+            file >> v >> u >> weight;
+            this->weightMatrix[v][u] = weight;
+            this->weightMatrix[u][v] = weight;
             this->adjacencyList[u].push_back(v);
             if(u != v) {
                this->adjacencyList[v].push_back(u);
             }
+            if( file.eof() ) break;
         }
     file.close();
 }
