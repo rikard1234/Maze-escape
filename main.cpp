@@ -6,9 +6,15 @@ using namespace std;
 
 
 int main() {
+    vector<int> order;
     int V, E;
-
     Graph graph("dane.txt");
     graph.print();
+    order = graph.pre_bfs(0);
+
+    for(int i = 0; i < order.size(); i++){
+        //cout << order.size() << " ";
+        cout << order[i] << " ";
+    }
     return 0;
 }
