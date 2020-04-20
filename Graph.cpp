@@ -11,11 +11,7 @@ Graph::Graph(string path) {
 
         this->adjacencyList = new vector<int>[V];
         this->weightMatrix = new int*[V];
-        this->visited = new bool[V];
 
-        for(int i = 0; i < V; i++) {
-            this->visited[i] = false;
-        }
         for(int i = 0; i < V; ++i) weightMatrix[i] = new int[V];
         for(int i = 0; i < V; ++i)  {
             for(int j = 0; j < V; ++j) {
@@ -53,31 +49,35 @@ void Graph::print() {
     }
 }
 
-void Graph::bfs(int n) {
+vector<int> Graph::bfs(int n) {
+    int* visited = new int [this->V];
+    vector<int> order;
+    for(int i = 0; i < this->V; i++)  visited[i] = false;
     queue<int> nodes;
     //init step
-    this->visited[n] = true;
+    visited[n] = true;
     nodes.push(n);
     //repetetive step
         while (!nodes.empty()) {
             n = nodes.front();
-            this->order.push_back(n);
+            order.push_back(n);
             for (int i = 0; i < adjacencyList[n].size(); i++) {
-                if (!(this->visited[adjacencyList[n].at(i)])) nodes.push(adjacencyList[n].at(i));
+                if (!(visited[adjacencyList[n].at(i)])) nodes.push(adjacencyList[n].at(i));
             }
             nodes.pop();
-            this->visited[n] = true;
+            visited[n] = true;
+            if(nodes.empty()) {
+                for(int i; i < this->V; i++) {
+                    if(visited[i] == false) {
+                        nodes.push(i);
+                        break;
+                    }
+                }
+            }
         }
+        return order;
 }
 
-vector<int> Graph::pre_bfs(int n) {
-    bfs(n);
-    for(int i; i < V; i++) {
-        if(this->visited[i] == false)
-            bfs(i);
-    }
-    return this->order;
-}
 
 
 

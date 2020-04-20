@@ -12,16 +12,13 @@ using namespace std;
 class Graph {
 public:
     int V, E;
-    bool* visited;
     void readFromFile();
     void print();
-    void bfs(int n);
-    vector<int> pre_bfs(int n);
+    vector<int> bfs(int n);
     Graph(string);
 private:
     vector<int>* adjacencyList;
     int** weightMatrix;
-    vector<int> order;
 };
 
 

@@ -10,7 +10,7 @@ int main() {
     int V, E;
     Graph graph("dane.txt");
     graph.print();
-    order = graph.pre_bfs(0);
+    order = graph.bfs(0);
 
     for(int i = 0; i < order.size(); i++){
         //cout << order.size() << " ";
