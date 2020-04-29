@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Graphs/Graph.cpp
-Graph.h
-C:/Graphs/Graph.h
-queue
--
-
 C:/Graphs/Graph.h
 vector
 -

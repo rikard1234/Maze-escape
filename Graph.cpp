@@ -50,30 +50,36 @@ void Graph::print() {
 }
 
 vector<int> Graph::bfs(int n) {
-    int* visited = new int [this->V];
+    bool* visited = new bool [this->V];
     vector<int> order;
-    for(int i = 0; i < this->V; i++)  visited[i] = false;
+    for(int i = 0; i < this->V; i++) {
+        visited[i] = false;
+    }
     queue<int> nodes;
     //init step
-    visited[n] = true;
     nodes.push(n);
+    visited[n] = true;
     //repetetive step
         while (!nodes.empty()) {
             n = nodes.front();
             order.push_back(n);
-            for (int i = 0; i < adjacencyList[n].size(); i++) {
-                if (!(visited[adjacencyList[n].at(i)])) nodes.push(adjacencyList[n].at(i));
-            }
             nodes.pop();
-            visited[n] = true;
+            for (int i = 0; i < adjacencyList[n].size(); i++) {
+                if (!(visited[adjacencyList[n].at(i)]) ) {
+                    visited[adjacencyList[n].at(i)] = true;
+                    nodes.push(adjacencyList[n].at(i));
+                }
+            }
             if(nodes.empty()) {
-                for(int i; i < this->V; i++) {
+                for(int i = 0; i < this->V; i++) {
                     if(visited[i] == false) {
+                        visited[i] = true;
                         nodes.push(i);
                         break;
                     }
                 }
             }
+
         }
         return order;
 }

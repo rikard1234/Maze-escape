@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     vector<int> order;
     int V, E;
-    Graph graph("dane.txt");
+    Graph graph("dane3.txt");
     graph.print();
     order = graph.bfs(0);
 
