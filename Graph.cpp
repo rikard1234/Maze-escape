@@ -3,6 +3,7 @@
 //A{!tt
 #include "Graph.h"
 #include <queue>
+#include <stack>
 
 Graph::Graph(string path) {
         ifstream file;
@@ -84,6 +85,35 @@ vector<int> Graph::bfs(int n) {
         return order;
 }
 
+vector<int> Graph::dfs(int n) {
+    bool visited[this->V];
+    stack<int> nodes;
+    for(int i = 0; i < this->V; i++) visited[i] = false;
+    vector<int> order;
+    nodes.push(n);
+    visited[nodes.top()] = true;
+    while(!nodes.empty()) {
+        n = nodes.top();
+        order.push_back(n);
+        nodes.pop();
+        for (int i = 0; i < adjacencyList[n].size(); i++) {
+            if (!visited[adjacencyList[n].at(i)]) {
+                nodes.push(adjacencyList[n].at(i));
+                visited[adjacencyList[n].at(i)] = true;
+            }
+        }
+        if(nodes.empty()) {
+            for(int i = 0; i < this->V; i++) {
+                if(visited[i] == false) {
+                    visited[i] = true;
+                    nodes.push(i);
+                    break;
+                }
+            }
+        }
+    }
+    return order;
+}
 
 
 

@@ -11,12 +11,13 @@
 using namespace std;
 class Graph {
 public:
-    int V, E;
     void readFromFile();
     void print();
     vector<int> bfs(int n);
+    vector<int> dfs(int n);
     Graph(string);
 private:
+    int V, E;
     vector<int>* adjacencyList;
     int** weightMatrix;
 };
