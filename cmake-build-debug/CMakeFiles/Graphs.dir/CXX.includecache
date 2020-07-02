@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Graphs/Graph.h
+/home/jakub/projects/Graphs/Graph.h
 vector
 -
 fstream
@@ -15,8 +15,10 @@ iostream
 -
 string
 -
+deque
+-
 
-C:/Graphs/main.cpp
+/home/jakub/projects/Graphs/main.cpp
 iostream
 -
 vector
@@ -24,5 +26,5 @@ vector
 fstream
 -
 Graph.h
-C:/Graphs/Graph.h
+/home/jakub/projects/Graphs/Graph.h
 

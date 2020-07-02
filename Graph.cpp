@@ -51,71 +51,67 @@ void Graph::print() {
 }
 
 vector<int> Graph::bfs(int n) {
-    bool* visited = new bool [this->V];
+    bool* visited = new bool[this->V];
     vector<int> order;
-    for(int i = 0; i < this->V; i++) {
-        visited[i] = false;
-    }
-    queue<int> nodes;
-    //init step
-    nodes.push(n);
-    visited[n] = true;
-    //repetetive step
-        while (!nodes.empty()) {
-            n = nodes.front();
-            order.push_back(n);
-            nodes.pop();
-            for (int i = 0; i < adjacencyList[n].size(); i++) {
-                if (!(visited[adjacencyList[n].at(i)]) ) {
-                    visited[adjacencyList[n].at(i)] = true;
-                    nodes.push(adjacencyList[n].at(i));
-                }
-            }
-            if(nodes.empty()) {
-                for(int i = 0; i < this->V; i++) {
-                    if(visited[i] == false) {
-                        visited[i] = true;
-                        nodes.push(i);
-                        break;
-                    }
-                }
-            }
+    deque<int> nodes;
+    this->init(n, visited, nodes);
 
-        }
-        return order;
-}
-
-vector<int> Graph::dfs(int n) {
-    bool visited[this->V];
-    stack<int> nodes;
-    for(int i = 0; i < this->V; i++) visited[i] = false;
-    vector<int> order;
-    nodes.push(n);
-    visited[nodes.top()] = true;
-    while(!nodes.empty()) {
-        n = nodes.top();
+    while (!nodes.empty()) {
+        n = nodes.back();
+        nodes.pop_back();
         order.push_back(n);
-        nodes.pop();
-        for (int i = 0; i < adjacencyList[n].size(); i++) {
-            if (!visited[adjacencyList[n].at(i)]) {
-                nodes.push(adjacencyList[n].at(i));
-                visited[adjacencyList[n].at(i)] = true;
-            }
-        }
-        if(nodes.empty()) {
-            for(int i = 0; i < this->V; i++) {
-                if(visited[i] == false) {
-                    visited[i] = true;
-                    nodes.push(i);
-                    break;
-                }
-            }
-        }
+        this->visitNeighbors(n, visited, nodes);
+        this->checkForUnvisitedNode(visited, nodes);
     }
+
     return order;
 }
 
+vector<int> Graph::dfs(int n) {
+    bool* visited = new bool[this->V];
+    deque<int> nodes;
+    vector<int> order;
+    this->init(n, visited, nodes);
 
+    while(!nodes.empty()) {
+        n = nodes.front();
+        nodes.pop_front();
+        order.push_back(n);
+        this->visitNeighbors(n, visited, nodes);
+        this->checkForUnvisitedNode(visited, nodes);
+    }
+
+    return order;
+}
+
+void Graph::init(int n, bool* visited, deque<int>& nodes) {
+    for(int i = 0; i < this->V; i++) {
+        visited[i] = false;
+    }
+    nodes.push_front(n);
+    visited[n] = true;
+}
+
+void Graph::visitNeighbors(int n, bool* visited, deque<int>& nodes) {
+    for (int i = 0; i < adjacencyList[n].size(); i++) {
+        if (!(visited[adjacencyList[n].at(i)]) ) {
+            visited[adjacencyList[n].at(i)] = true;
+            nodes.push_front(adjacencyList[n].at(i));
+        }
+    }
+}
+
+void Graph::checkForUnvisitedNode(bool* visited, deque<int>& nodes) {
+    if(nodes.empty()) {
+        for(int i = 0; i < this->V; i++) {
+            if(visited[i] == false) {
+                visited[i] = true;
+                nodes.push_front(i);
+                break;
+            }
+        }
+    }
+}
 
 
 

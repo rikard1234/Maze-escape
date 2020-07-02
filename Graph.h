@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <deque>
 using namespace std;
 class Graph {
 public:
@@ -15,6 +16,9 @@ public:
     void print();
     vector<int> bfs(int n);
     vector<int> dfs(int n);
+    void init(int, bool*, deque<int>&);
+    void visitNeighbors(int, bool*, deque<int>&);
+    void checkForUnvisitedNode(bool*, deque<int>&);
     Graph(string);
 private:
     int V, E;
