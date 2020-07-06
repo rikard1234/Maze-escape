@@ -18,6 +18,18 @@ string
 deque
 -
 
+/home/jakub/projects/Graphs/GraphLabyrinth.cpp
+GraphLabyrinth.h
+/home/jakub/projects/Graphs/GraphLabyrinth.h
+
+/home/jakub/projects/Graphs/GraphLabyrinth.h
+Graph.h
+/home/jakub/projects/Graphs/Graph.h
+string
+-
+iostream
+-
+
 /home/jakub/projects/Graphs/main.cpp
 iostream
 -
@@ -27,4 +39,6 @@ fstream
 -
 Graph.h
 /home/jakub/projects/Graphs/Graph.h
+GraphLabyrinth.h
+/home/jakub/projects/Graphs/GraphLabyrinth.h
 

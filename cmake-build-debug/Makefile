@@ -150,6 +150,33 @@ Graph.cpp.s:
 	$(MAKE) -f CMakeFiles/Graphs.dir/build.make CMakeFiles/Graphs.dir/Graph.cpp.s
 .PHONY : Graph.cpp.s
 
+GraphLabyrinth.o: GraphLabyrinth.cpp.o
+
+.PHONY : GraphLabyrinth.o
+
+# target to build an object file
+GraphLabyrinth.cpp.o:
+	$(MAKE) -f CMakeFiles/Graphs.dir/build.make CMakeFiles/Graphs.dir/GraphLabyrinth.cpp.o
+.PHONY : GraphLabyrinth.cpp.o
+
+GraphLabyrinth.i: GraphLabyrinth.cpp.i
+
+.PHONY : GraphLabyrinth.i
+
+# target to preprocess a source file
+GraphLabyrinth.cpp.i:
+	$(MAKE) -f CMakeFiles/Graphs.dir/build.make CMakeFiles/Graphs.dir/GraphLabyrinth.cpp.i
+.PHONY : GraphLabyrinth.cpp.i
+
+GraphLabyrinth.s: GraphLabyrinth.cpp.s
+
+.PHONY : GraphLabyrinth.s
+
+# target to generate assembly for a file
+GraphLabyrinth.cpp.s:
+	$(MAKE) -f CMakeFiles/Graphs.dir/build.make CMakeFiles/Graphs.dir/GraphLabyrinth.cpp.s
+.PHONY : GraphLabyrinth.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -189,6 +216,9 @@ help:
 	@echo "... Graph.o"
 	@echo "... Graph.i"
 	@echo "... Graph.s"
+	@echo "... GraphLabyrinth.o"
+	@echo "... GraphLabyrinth.i"
+	@echo "... GraphLabyrinth.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

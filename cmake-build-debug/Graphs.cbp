@@ -90,6 +90,12 @@
 		<Unit filename="/home/jakub/projects/Graphs/Graph.h">
 			<Option target="Graphs"/>
 		</Unit>
+		<Unit filename="/home/jakub/projects/Graphs/GraphLabyrinth.cpp">
+			<Option target="Graphs"/>
+		</Unit>
+		<Unit filename="/home/jakub/projects/Graphs/GraphLabyrinth.h">
+			<Option target="Graphs"/>
+		</Unit>
 		<Unit filename="/home/jakub/projects/Graphs/main.cpp">
 			<Option target="Graphs"/>
 		</Unit>

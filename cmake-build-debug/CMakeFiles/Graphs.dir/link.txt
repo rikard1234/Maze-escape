@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/Graphs.dir/main.cpp.o CMakeFiles/Graphs.dir/Graph.cpp.o  -o Graphs 
+/usr/bin/c++  -g   CMakeFiles/Graphs.dir/main.cpp.o CMakeFiles/Graphs.dir/Graph.cpp.o CMakeFiles/Graphs.dir/GraphLabyrinth.cpp.o  -o Graphs 

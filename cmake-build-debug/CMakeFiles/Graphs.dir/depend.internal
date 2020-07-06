@@ -4,6 +4,11 @@
 CMakeFiles/Graphs.dir/Graph.cpp.o
  /home/jakub/projects/Graphs/Graph.cpp
  /home/jakub/projects/Graphs/Graph.h
+CMakeFiles/Graphs.dir/GraphLabyrinth.cpp.o
+ /home/jakub/projects/Graphs/Graph.h
+ /home/jakub/projects/Graphs/GraphLabyrinth.cpp
+ /home/jakub/projects/Graphs/GraphLabyrinth.h
 CMakeFiles/Graphs.dir/main.cpp.o
  /home/jakub/projects/Graphs/Graph.h
+ /home/jakub/projects/Graphs/GraphLabyrinth.h
  /home/jakub/projects/Graphs/main.cpp
