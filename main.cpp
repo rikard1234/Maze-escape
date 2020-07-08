@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
     GraphLabyrinth lab("lab1.txt");
-    vector<int> order = lab.dfs();
+    vector<int> order = lab.bfs();
     for(int i = 0; i < order.size(); i++) {
         cout << order[i] << " ";
     }

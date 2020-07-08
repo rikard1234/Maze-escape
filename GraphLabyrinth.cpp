@@ -27,7 +27,7 @@ GraphLabyrinth::GraphLabyrinth(string path) {
     }
     for(int i = 0; i < this->V; i++) {
         if(this->nodesType[i] == 'S') this->S = i;
-        if(this->nodesType[i] == 'F') this->F = i;
+        else if(this->nodesType[i] == 'F') this->F = i;
         if(this->nodesType[i] != 'O') {
             if (i - 1 >= 0 && this->nodesCoordinates[i].x - 1 >= 0 && this->nodesType[i - 1] != 'O') this->adjacencyList[i].push_back(i - 1);
             if (i + 1 < this->V && this->nodesCoordinates[i].x + 1 < width && this->nodesType[i + 1] != 'O') this->adjacencyList[i].push_back(i + 1);
