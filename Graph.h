@@ -14,17 +14,18 @@ using namespace std;
 class Graph {
     public:
         void print();
-        vector<int> bfs(int n);
-        vector<int> dfs(int n);
+        vector<int> bfs(int, int);
+        vector<int> dfs(int, int);
         void init(int, bool*, deque<int>&);
         void visitNeighbors(int, bool*, deque<int>&);
         void checkForUnvisitedNode(bool*, deque<int>&);
         Graph(string);
         Graph();
     private:
-        int V, E;
-        vector<int>* adjacencyList;
         int** weightMatrix;
+    protected:
+        vector<int>* adjacencyList;
+        int V, E;
 };
 
 

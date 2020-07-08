@@ -7,6 +7,7 @@
 #include "Graph.h"
 #include <string>
 #include <iostream>
+
 struct Point2D {
     int x;
     int y;
@@ -16,11 +17,12 @@ class GraphLabyrinth : Graph {
     public:
         GraphLabyrinth(string);
         void displayAdjacencyList();
+        vector<int> bfs();
+        vector<int> dfs();
     private:
-        vector<int>* adjacencyList;
         vector<char> nodesType;
         vector<Point2D> nodesCoordinates;
-        int V;
+        int S, F;
 };
 
 

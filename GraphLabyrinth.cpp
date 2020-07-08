@@ -14,20 +14,20 @@ GraphLabyrinth::GraphLabyrinth(string path) {
     this->V = width * height;
     this->adjacencyList = new vector<int>[V];
 
-    vector<Point2D> Coordinates;
-
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
-            char buffor_x;
-            file >> buffor_x;
-            Point2D buffor_Coordinate;
-            buffor_Coordinate.x = j;
-            buffor_Coordinate.y = i;
-            this->nodesCoordinates.push_back(buffor_Coordinate);
-            this->nodesType.push_back(buffor_x);
+            char bufforX;
+            file >> bufforX;
+            Point2D bufforCoordinate;
+            bufforCoordinate.x = j;
+            bufforCoordinate.y = i;
+            this->nodesCoordinates.push_back(bufforCoordinate);
+            this->nodesType.push_back(bufforX);
         }
     }
     for(int i = 0; i < this->V; i++) {
+        if(this->nodesType[i] == 'S') this->S = i;
+        if(this->nodesType[i] == 'F') this->F = i;
         if(this->nodesCoordinates[i].x - 1 >= 0) this->adjacencyList[i].push_back(i - 1);
         if(this->nodesCoordinates[i].x + 1 < width) this->adjacencyList[i].push_back(i + 1);
         if(i + width < this->V && this->nodesCoordinates[i + width].x < this->V) this->adjacencyList[i].push_back(i + width);
@@ -43,4 +43,12 @@ void GraphLabyrinth::displayAdjacencyList() {
         }
         cout << endl;
     }
+}
+
+vector<int> GraphLabyrinth::bfs() {
+    return Graph::bfs(this->S, this->F);
+}
+
+vector<int> GraphLabyrinth::dfs() {
+    return Graph::dfs(this->S, this->F);
 }

@@ -10,7 +10,6 @@ Graph::Graph(string path) {
     ifstream file;
     file.open(path);
     file >> this->V >> this->E;
-
     this->adjacencyList = new vector<int>[V];
     this->weightMatrix = new int*[V];
 
@@ -51,34 +50,33 @@ void Graph::print() {
     }
 }
 
-vector<int> Graph::bfs(int n) {
+vector<int> Graph::bfs(int s, int f) {
     bool* visited = new bool[this->V];
     vector<int> order;
     deque<int> nodes;
-    this->init(n, visited, nodes);
-
-    while (!nodes.empty()) {
-        n = nodes.back();
+    this->init(s, visited, nodes);
+    while (!nodes.empty() && s != f) {
+        s = nodes.back();
         nodes.pop_back();
-        order.push_back(n);
-        this->visitNeighbors(n, visited, nodes);
+        order.push_back(s);
+        this->visitNeighbors(s, visited, nodes);
         this->checkForUnvisitedNode(visited, nodes);
     }
 
     return order;
 }
 
-vector<int> Graph::dfs(int n) {
+vector<int> Graph::dfs(int s, int f) {
     bool* visited = new bool[this->V];
     deque<int> nodes;
     vector<int> order;
-    this->init(n, visited, nodes);
+    this->init(s, visited, nodes);
 
-    while(!nodes.empty()) {
-        n = nodes.front();
+    while(!nodes.empty() && s != f) {
+        s = nodes.front();
         nodes.pop_front();
-        order.push_back(n);
-        this->visitNeighbors(n, visited, nodes);
+        order.push_back(s);
+        this->visitNeighbors(s, visited, nodes);
         this->checkForUnvisitedNode(visited, nodes);
     }
 
