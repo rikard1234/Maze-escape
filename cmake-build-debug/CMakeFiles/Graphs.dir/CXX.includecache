@@ -18,23 +18,19 @@ string
 deque
 -
 
+/home/jakub/projects/Graphs/GraphLabyrinth.cpp
+GraphLabyrinth.h
+/home/jakub/projects/Graphs/GraphLabyrinth.h
+
 /home/jakub/projects/Graphs/GraphLabyrinth.h
 Graph.h
 /home/jakub/projects/Graphs/Graph.h
+queue
+/home/jakub/projects/Graphs/queue
 string
 -
 iostream
 -
-
-/home/jakub/projects/Graphs/main.cpp
-iostream
+math.h
 -
-vector
--
-fstream
--
-Graph.h
-/home/jakub/projects/Graphs/Graph.h
-GraphLabyrinth.h
-/home/jakub/projects/Graphs/GraphLabyrinth.h
 

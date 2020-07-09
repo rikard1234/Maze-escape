@@ -54,3 +54,64 @@ vector<int> GraphLabyrinth::bfs() {
 vector<int> GraphLabyrinth::dfs() {
     return Graph::dfs(this->S, this->F);
 }
+
+vector<int> GraphLabyrinth::A() {
+    vector<int> path;
+    this->costs = new int [this->V];
+    bool closed[this->V];
+    int current = this->S;
+    int goal = this->F;
+    for(int i = 0; i < this->V; i++) closed[i] = false;
+    std::priority_queue<int, std::vector<int>, std::greater<int> > priorityQueue;
+    priorityQueue.push(current);
+
+    while(current != goal)
+    {
+        current = priorityQueue.top();
+        priorityQueue.pop();
+        closed[current] = true;
+        path.push_back(current);
+        if(current == goal) {
+           return path;
+        }
+        for(int i = 0; i < adjacencyList[current].size(); i++) {
+           if(closed[this->adjacencyList[current].at(i)] != true && this->adjacencyList[current].at(i) != 'O') {
+               costs[this->adjacencyList[current].at(i)] =
+                       sqrt(pow((this->nodesCoordinates[this->adjacencyList[current].at(i)].x - this->nodesCoordinates[this->S].x),2 ) +
+                               pow((this->nodesCoordinates[this->adjacencyList[current].at(i)].y - this->nodesCoordinates[this->S].y),2 ))
+                               + sqrt(pow((this->nodesCoordinates[this->F].x - this->nodesCoordinates[this->adjacencyList[current].at(i)].x),2 ) +
+                               pow((this->nodesCoordinates[this->F].y - this->nodesCoordinates[this->adjacencyList[current].at(i)].y),2 ));
+               priorityQueue.push(this->adjacencyList[current].at(i));
+           }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

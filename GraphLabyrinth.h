@@ -5,9 +5,10 @@
 #ifndef GRAPHS_GRAPHLABYRINTH_H
 #define GRAPHS_GRAPHLABYRINTH_H
 #include "Graph.h"
+#include "queue"
 #include <string>
 #include <iostream>
-
+#include <math.h>
 struct Point2D {
     int x;
     int y;
@@ -19,7 +20,9 @@ class GraphLabyrinth : Graph {
         void displayAdjacencyList();
         vector<int> bfs();
         vector<int> dfs();
+        vector<int> A();
     private:
+        int* costs;
         vector<char> nodesType;
         vector<Point2D> nodesCoordinates;
         int S, F;
