@@ -60,13 +60,11 @@ vector<pair<int,float>> GraphLabyrinth::a() {
                                  pow(this->nodesCoordinates[this->F].y - this->nodesCoordinates[this->S].y,2 ))));
     vector<pair<int,float>> path;
     int cost_so_far[this->V];
-    for(int i = 0; i < this->V; i++) cost_so_far[i] = 0;
-    for(int i = 0; i < this->adjacencyList[this->S].size(); i++) {
-        cost_so_far[this->adjacencyList[this->S].at(i)] = 1;
-    };
+    for(int i = 0; i < this->V; i++) cost_so_far[i] = 100000000;
     int unvisited[this->V];
-    unvisited[this->S] = false;
     for(int i = 0; i < this->V; i++) unvisited[i] = true;
+    unvisited[this->S] = false;
+
     while(!priorityQueue.empty()) {
         pair<int, float> current = priorityQueue.top();
         path.push_back(current);
@@ -84,7 +82,6 @@ vector<pair<int,float>> GraphLabyrinth::a() {
                         unvisited[this->adjacencyList[current.first].at(i)] = false;
                         priorityQueue.push(make_pair(this->adjacencyList[current.first].at(i), priority));
                     }
-
         }
     }
 }

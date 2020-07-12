@@ -2,11 +2,11 @@
 OOOOOOOOOOO
 O.......O.O
 OOO.OOOOO.O
-OFO.......O
+O.O.......O
 O.O.O.OOO.O
 O...OO....O
 OOO...O.OOO
-O...O.O.O.O
+O...O.O.OFO
 OOOOO.OOO.O
 OS........O
 OOOOOOOOOOO

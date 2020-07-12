@@ -22,7 +22,7 @@ int main() {
         cout << orderb[i] << " ";
     }
     cout << endl;
-    
+
    for(int i = 0; i < orderd.size(); i++) {
       cout << orderd[i] << " ";
     }
