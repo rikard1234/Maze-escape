@@ -8,14 +8,22 @@ using namespace std;
 
 int main() {
     GraphLabyrinth lab("lab1.txt");
-    vector<int> order = lab.A();
+
+    vector<pair<int, float>> order = lab.a();
+    vector<int> orderd = lab.dfs();
+    vector<int> orderb = lab.bfs();
+
     for(int i = 0; i < order.size(); i++) {
-        cout << order[i] << " ";
+        cout << order[i].first<< " ";
     }
-    /*Graph lab2("dane2.txt");
-    vector<int> order = lab2.dfs(6, 0);
-    for(int i = 0; i < order.size(); i++) {
-        cout << order[i];
+    cout << endl;
+
+    for(int i = 0; i < orderb.size(); i++) {
+        cout << orderb[i] << " ";
     }
-     */
+    cout << endl;
+    
+   for(int i = 0; i < orderd.size(); i++) {
+      cout << orderd[i] << " ";
+    }
 }

@@ -13,7 +13,6 @@ GraphLabyrinth::GraphLabyrinth(string path) {
     file >> width >> height;
     this->V = width * height;
     this->adjacencyList = new vector<int>[V];
-
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
             char bufforX;
@@ -54,38 +53,42 @@ vector<int> GraphLabyrinth::bfs() {
 vector<int> GraphLabyrinth::dfs() {
     return Graph::dfs(this->S, this->F);
 }
-
-vector<int> GraphLabyrinth::A() {
-    vector<int> path;
-    this->costs = new int [this->V];
-    bool closed[this->V];
-    int current = this->S;
-    int goal = this->F;
-    for(int i = 0; i < this->V; i++) closed[i] = false;
-    std::priority_queue<int, std::vector<int>, std::greater<int> > priorityQueue;
-    priorityQueue.push(current);
-
-    while(current != goal)
-    {
-        current = priorityQueue.top();
-        priorityQueue.pop();
-        closed[current] = true;
+vector<pair<int,float>> GraphLabyrinth::a() {
+    priority_queue<pair<int, float>, vector<pair<int, float>>, myComparator > priorityQueue;
+    priorityQueue.push(make_pair(this->S,
+                                 sqrt(pow(this->nodesCoordinates[this->F].x - this->nodesCoordinates[this->S].x,2 ) +
+                                 pow(this->nodesCoordinates[this->F].y - this->nodesCoordinates[this->S].y,2 ))));
+    vector<pair<int,float>> path;
+    int cost_so_far[this->V];
+    for(int i = 0; i < this->V; i++) cost_so_far[i] = 0;
+    for(int i = 0; i < this->adjacencyList[this->S].size(); i++) {
+        cost_so_far[this->adjacencyList[this->S].at(i)] = 1;
+    };
+    int unvisited[this->V];
+    unvisited[this->S] = false;
+    for(int i = 0; i < this->V; i++) unvisited[i] = true;
+    while(!priorityQueue.empty()) {
+        pair<int, float> current = priorityQueue.top();
         path.push_back(current);
-        if(current == goal) {
-           return path;
-        }
-        for(int i = 0; i < adjacencyList[current].size(); i++) {
-           if(closed[this->adjacencyList[current].at(i)] != true && this->adjacencyList[current].at(i) != 'O') {
-               costs[this->adjacencyList[current].at(i)] =
-                       sqrt(pow((this->nodesCoordinates[this->adjacencyList[current].at(i)].x - this->nodesCoordinates[this->S].x),2 ) +
-                               pow((this->nodesCoordinates[this->adjacencyList[current].at(i)].y - this->nodesCoordinates[this->S].y),2 ))
-                               + sqrt(pow((this->nodesCoordinates[this->F].x - this->nodesCoordinates[this->adjacencyList[current].at(i)].x),2 ) +
-                               pow((this->nodesCoordinates[this->F].y - this->nodesCoordinates[this->adjacencyList[current].at(i)].y),2 ));
-               priorityQueue.push(this->adjacencyList[current].at(i));
-           }
+        priorityQueue.pop();
+        if(current.first == this->F) return path;
+        for(int i = 0; i < this->adjacencyList[current.first].size(); i++) {
+            int new_cost = cost_so_far[current.first] + 1;
+                    if(unvisited[this->adjacencyList[current.first].at(i)]
+                       || cost_so_far[this->adjacencyList[current.first].at(i)] > new_cost) {
+                        cost_so_far[this->adjacencyList[current.first].at(i)] = new_cost;
+                        float priority = new_cost + sqrt(pow(this->nodesCoordinates[this->F].x -
+                        this->nodesCoordinates[this->adjacencyList[current.first].at(i)].x,2 ) +
+                        pow(this->nodesCoordinates[this->F].y -
+                        this->nodesCoordinates[this->adjacencyList[current.first].at(i)].y,2 ));
+                        unvisited[this->adjacencyList[current.first].at(i)] = false;
+                        priorityQueue.push(make_pair(this->adjacencyList[current.first].at(i), priority));
+                    }
+
         }
     }
 }
+
 
 
 
