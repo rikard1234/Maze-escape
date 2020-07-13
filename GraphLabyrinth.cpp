@@ -13,6 +13,7 @@ GraphLabyrinth::GraphLabyrinth(string path) {
     file >> width >> height;
     this->V = width * height;
     this->adjacencyList = new vector<int>[V];
+
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
             char bufforX;
@@ -24,6 +25,7 @@ GraphLabyrinth::GraphLabyrinth(string path) {
             this->nodesType.push_back(bufforX);
         }
     }
+
     for(int i = 0; i < this->V; i++) {
         if(this->nodesType[i] == 'S') this->S = i;
         else if(this->nodesType[i] == 'F') this->F = i;
@@ -53,6 +55,7 @@ vector<int> GraphLabyrinth::bfs() {
 vector<int> GraphLabyrinth::dfs() {
     return Graph::dfs(this->S, this->F);
 }
+
 vector<pair<int,float>> GraphLabyrinth::a() {
     priority_queue<pair<int, float>, vector<pair<int, float>>, myComparator > priorityQueue;
     priorityQueue.push(make_pair(this->S,
@@ -60,26 +63,25 @@ vector<pair<int,float>> GraphLabyrinth::a() {
                                  pow(this->nodesCoordinates[this->F].y - this->nodesCoordinates[this->S].y,2 ))));
     vector<pair<int,float>> path;
     int cost_so_far[this->V];
-    for(int i = 0; i < this->V; i++) cost_so_far[i] = 100000000;
-    int unvisited[this->V];
-    for(int i = 0; i < this->V; i++) unvisited[i] = true;
-    unvisited[this->S] = false;
+    for(int i = 0; i < this->V; i++) cost_so_far[i] = INT_MAX;
+    cost_so_far[this->S] = 0;
 
     while(!priorityQueue.empty()) {
         pair<int, float> current = priorityQueue.top();
         path.push_back(current);
         priorityQueue.pop();
         if(current.first == this->F) return path;
+
         for(int i = 0; i < this->adjacencyList[current.first].size(); i++) {
             int new_cost = cost_so_far[current.first] + 1;
-                    if(unvisited[this->adjacencyList[current.first].at(i)]
-                       || cost_so_far[this->adjacencyList[current.first].at(i)] > new_cost) {
+                    if( cost_so_far[this->adjacencyList[current.first].at(i)] > new_cost) {
                         cost_so_far[this->adjacencyList[current.first].at(i)] = new_cost;
+
                         float priority = new_cost + sqrt(pow(this->nodesCoordinates[this->F].x -
                         this->nodesCoordinates[this->adjacencyList[current.first].at(i)].x,2 ) +
                         pow(this->nodesCoordinates[this->F].y -
                         this->nodesCoordinates[this->adjacencyList[current.first].at(i)].y,2 ));
-                        unvisited[this->adjacencyList[current.first].at(i)] = false;
+
                         priorityQueue.push(make_pair(this->adjacencyList[current.first].at(i), priority));
                     }
         }

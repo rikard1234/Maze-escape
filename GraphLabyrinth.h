@@ -11,10 +11,13 @@
 #include <math.h>
 #include <utility>
 #include <set>
+#include <limits.h>
+
 struct Point2D {
     int x;
     int y;
 };
+
 struct myComparator {
     constexpr bool operator()(
             pair<int, float> const& a,
